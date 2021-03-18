@@ -1,4 +1,6 @@
-module RanDAGen
+# RanDAGen/src/generator.jl
+# Licensed under the MIT License. See LICENSE.md file in the project root for
+# full license information.
 
 """
 Configuration Options
@@ -17,10 +19,3 @@ Local
 - `max_task::Int64`: Defaults to 100
 - `output_stream::IOStream`: Defaults to stdout
 """
-
-include("statistics.jl")
-export Statistics, print_stats
-
-greet() = print("Hello World!")
-
-end # module
