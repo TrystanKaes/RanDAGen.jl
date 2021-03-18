@@ -4,9 +4,9 @@ notifications:
   email: false
 julia:
   - 1.5
-  - nightly
+  # - nightly
 os:
-  - linux
+  # - linux
   - osx
   # - windows
 arch:
