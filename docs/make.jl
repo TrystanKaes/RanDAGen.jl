@@ -2,7 +2,7 @@ using RanDAGen
 using Documenter
 
 makedocs(;
-    modules=[SimLynx],
+    modules=[RanDAGen],
     authors="Trystan Kaes <trystanblkaes@gmail.com>",
     repo="https://github.com/TrystanKaes/RanDAGen.jl/blob/{commit}{path}#L{line}",
     sitename="RanDAGen.jl",
