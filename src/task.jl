@@ -9,7 +9,9 @@ Represents Stuff
 
 # Fields
 - `ID::Int64`: The unique ID of this Task.
-- `work::Value{Int64}`: The amount of work to be done on this task
+- `work::Pair{Int64,Int64}`: The amount of work to be done on this task. `.first` holds the
+state. `.second` holds the unaltered value.
+amount of work.
 - `communication::Float64`: The cost of communicating
 - `data::Int64`: The amount of data this task handles
 - `alpha::Float64`: The alpha parameter for Amdahl law calculation
@@ -22,8 +24,14 @@ Represents Stuff
 mutable struct Task{T}
     ID::Int64
     work::Pair{Int64,Int64}
-    data::T
     alpha::Float64
     complexity::Symbol
     transfer_tags::Int64
+    resource::Symbol
+
+    data::T
 end
+
+work(task::Task, n::Int64) = (task.work.first - n) < 0 ? 0 : task.work.first -= n
+workRemaining(task::Task) = task.work.second - task.work.first
+isDone(task::Task) = task.work.first === 0

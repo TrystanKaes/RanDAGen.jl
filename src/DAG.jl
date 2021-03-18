@@ -15,11 +15,9 @@ DAG is the graph and a collection of related introspection tools.
 # Methods
 - `val::Type{Any}`: words
 """
-mutable struct DAG{T} <: Graph
-    start::T
+mutable struct DAG{T}
 
-    vertices::Vector{Vertex{T}}
-    edges::Vector{Edge{T}}
+    graph::Graph{T}
 
     function DAG{T}(
         vertices=Vector{Vertex{T}},
