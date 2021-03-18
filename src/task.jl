@@ -1,30 +1,15 @@
 # RanDAGen/src/task.jl
 # Licensed under the MIT License. See LICENSE.md file in the project root for
 # full license information.
-"""
-    Value
-
-This is a really lamely named type but basically this is so that a value can have a changing
-state while still knowing what the original value was.
-
-# Fields
-- `value <: Real`: The unchanging value.
-- `state <: Real`: The state of the value at this moment.
 
 """
-mutable struct Value{T<:Real}
-    value::T
-    state::T
-end
-
-"""
-NAME
+Task
 
 Represents Stuff
 
 # Fields
 - `ID::Int64`: The unique ID of this Task.
-- `cost::Float64`: The cost of completing this task
+- `work::Value{Int64}`: The amount of work to be done on this task
 - `communication::Float64`: The cost of communicating
 - `data::Int64`: The amount of data this task handles
 - `alpha::Float64`: The alpha parameter for Amdahl law calculation
@@ -34,10 +19,10 @@ Represents Stuff
 # Methods
 - `val::Type{Any}`: words
 """
-mutable struct Task
+mutable struct Task{T}
     ID::Int64
-    cost::Union{Int64, 0}
-    data::Int64
+    work::Pair{Int64,Int64}
+    data::T
     alpha::Float64
     complexity::Symbol
     transfer_tags::Int64

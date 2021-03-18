@@ -15,14 +15,15 @@ DAG is the graph and a collection of related introspection tools.
 # Methods
 - `val::Type{Any}`: words
 """
-mutable struct DAG{T} <:
+mutable struct DAG{T} <: Graph
     start::T
 
-    vertices::Int64
-    edges::Int64
+    vertices::Vector{Vertex{T}}
+    edges::Vector{Edge{T}}
 
-
-
-    nodeList::Vector{T}
-    adjMatrix::Vector{Vector{T}}
+    function DAG{T}(
+        vertices=Vector{Vertex{T}},
+        edges=Vector{Edge{T}},) where {T<:Any}
+        return new(vertices, edges)
+    end
 end
