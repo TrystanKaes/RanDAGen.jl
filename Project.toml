@@ -1,0 +1,4 @@
+name = "RanDAGen"
+uuid = "c2ba5061-5b9a-4d6e-92a5-9898f43a89da"
+authors = ["Trystan Kaes <trystanblkaes@gmail.com>"]
+version = "0.1.0"
