@@ -1,0 +1,3 @@
+var documenterSearchIndex = {"docs":
+[{"location":"#RanDAGen.jl-Documentation","page":"Home","title":"RanDAGen.jl Documentation","text":"","category":"section"},{"location":"","page":"Home","title":"Home","text":"RanDAGen.jl is simple package that randomly generates directed acyclical graph's to be used in a variety of applications.","category":"page"},{"location":"","page":"Home","title":"Home","text":"CurrentModule = RanDAGen","category":"page"},{"location":"","page":"Home","title":"Home","text":"","category":"page"},{"location":"","page":"Home","title":"Home","text":"Modules = [RanDAGen]","category":"page"},{"location":"","page":"Home","title":"Home","text":"<!– @contents Pages = [ \"index.md\", ] –>","category":"page"}]
+}
