@@ -17,6 +17,7 @@ Local
 - `max_task::Int64`: Defaults to 100
 - `output_stream::IOStream`: Defaults to stdout
 """
+using Distributions
 
 include("statistics.jl")
 export Statistics, print_stats

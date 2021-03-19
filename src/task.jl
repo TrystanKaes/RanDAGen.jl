@@ -9,29 +9,43 @@ Represents Stuff
 
 # Fields
 - `ID::Int64`: The unique ID of this Task.
-- `work::Pair{Int64,Int64}`: The amount of work to be done on this task. `.first` holds the
-state. `.second` holds the unaltered value.
-amount of work.
-- `communication::Float64`: The cost of communicating
-- `data::Int64`: The amount of data this task handles
+- `work::Array{Pair(Symbol,Int64)}`: The (resource, work) pairs that makes up this tasks needs.
 - `alpha::Float64`: The alpha parameter for Amdahl law calculation
 - `complexity::Symbol`: The complexity of this Task (e.g :LOG_N, :N, :N_2)
-- `transfer_tags::Int64`: Don't know
+- `comm::Symbol`: Direction of communication :send, :recieve, or :none
+- `comm_target::Int64`: Identity of the process that needs to h
+- `communication_cost::Float64`: The cost of communicating
+- `data::Int64`: The amount of data this task needs to transfer
 
 # Methods
 - `val::Type{Any}`: words
 """
-mutable struct Task{T}
+mutable struct Task
     ID::Int64
-    work::Pair{Int64,Int64}
     alpha::Float64
     complexity::Symbol
-    transfer_tags::Int64
-    resource::Symbol
+    work::Dict{Symbol,Int64}
 
-    data::T
+    data::Int64
+
+    comm::Symbol
+    target::Int64
+    cost::Float64
+
+    function Task(
+        ID::Int64,
+        alpha::Float64,
+        complexity::Symbol,
+        work::Dict{Symbol,Int64},
+        data::Int64=0,
+        comm::Symbol=:none,
+        target::Int64=-1,
+        cost::Float64=0.0,
+    ) begin
+        return new(ID, alpha, complexity, work, data, comm, target, cost)
+    end
 end
 
-work(task::Task, n::Int64) = (task.work.first - n) < 0 ? 0 : task.work.first -= n
-workRemaining(task::Task) = task.work.second - task.work.first
+work(task::Task, n::Int64) = (task.work - n) < 0 ? 0 : task.work -= n
+workRemaining(task::Task) = sum(x->x.second, task)
 isDone(task::Task) = task.work.first === 0
