@@ -15,13 +15,23 @@ Local
 - `jump::Int64`: Defaults to 0
 - `density::Float64`: Defaults to 0.5
 - `max_task::Int64`: Defaults to 100
+- `resources::Int64`: Defaults to 5
 - `output_stream::IOStream`: Defaults to stdout
 """
+
+
 using Distributions
 
 include("statistics.jl")
 export Statistics, print_stats
 
 greet() = print("Hello World!")
+
+include("graph.jl")
+export AbstractGraph, Graph, Vertices, Edge,  nv, ne, vertices, edges, has_vertex, has_edge, add_edge!, add_node!, delete_edge!, delete_node!
+
+include("task.jl")
+export
+
 
 end # module
